@@ -1,1 +1,28 @@
-<p>note-details works!</p>
+<div class="form-container">
+  <form #noteForm="ngForm" (ngSubmit)="onSubmit(noteForm)">
+    <div class="field">
+      <label for="" class="label">Title</label>
+      <div class="control">
+        <input type="text" name="title" required class="input" />
+      </div>
+    </div>
+
+    <br />
+
+    <div class="field">
+      <label for="" class="label">Body</label>
+      <div class="control">
+        <textarea class="textarea"></textarea>
+      </div>
+    </div>
+
+    <div class="field is-grouped is-pulled-right">
+      <div class="control">
+        <button class="button is-text" type="button">Cancel</button>
+      </div>
+      <div class="control">
+        <button class="button is-success" type="submit">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
