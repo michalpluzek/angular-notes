@@ -3,7 +3,13 @@
     <div class="field">
       <label for="" class="label">Title</label>
       <div class="control">
-        <input type="text" name="title" required class="input" />
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="note.title"
+          required
+          class="input"
+        />
       </div>
     </div>
 
@@ -12,7 +18,11 @@
     <div class="field">
       <label for="" class="label">Body</label>
       <div class="control">
-        <textarea class="textarea"></textarea>
+        <textarea
+          class="textarea"
+          name="body"
+          [(ngModel)]="note.body"
+        ></textarea>
       </div>
     </div>
 
@@ -21,7 +31,13 @@
         <button class="button is-text" type="button">Cancel</button>
       </div>
       <div class="control">
-        <button class="button is-success" type="submit">Save</button>
+        <button
+          class="button is-success"
+          type="submit"
+          [disabled]="!noteForm.valid"
+        >
+          Save
+        </button>
       </div>
     </div>
   </form>
