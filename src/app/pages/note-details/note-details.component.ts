@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Note } from 'src/app/shared/note.model';
 import { NotesService } from 'src/app/shared/notes.service';
 
@@ -11,13 +11,31 @@ import { NotesService } from 'src/app/shared/notes.service';
 })
 export class NoteDetailsComponent implements OnInit {
   note: Note = new Note();
+  noteId = 0;
+  new = true;
 
-  constructor(private noteService: NotesService, private router: Router) {}
+  constructor(
+    private noteService: NotesService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      if (params.id) {
+        this.noteId = params.id;
+        this.note = this.noteService.get(this.noteId);
+        this.new = false;
+      } else this.new = true;
+    });
+  }
 
   onSubmit(form: NgForm) {
-    this.noteService.add(form.value);
+    if (this.new) {
+      this.noteService.add(form.value);
+    } else {
+      this.noteService.update(this.noteId, form.value.title, form.value.body);
+    }
     this.cancel();
   }
 
