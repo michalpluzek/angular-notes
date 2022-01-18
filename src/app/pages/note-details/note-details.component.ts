@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Note } from 'src/app/shared/note.model';
 import { NotesService } from 'src/app/shared/notes.service';
 
@@ -11,11 +12,12 @@ import { NotesService } from 'src/app/shared/notes.service';
 export class NoteDetailsComponent implements OnInit {
   note: Note = new Note();
 
-  constructor(private noteService: NotesService) {}
+  constructor(private noteService: NotesService, private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
     this.noteService.add(form.value);
+    this.router.navigateByUrl('/');
   }
 }
