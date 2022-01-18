@@ -9,7 +9,7 @@ import { NotesService } from 'src/app/shared/notes.service';
   styleUrls: ['./note-details.component.scss'],
 })
 export class NoteDetailsComponent implements OnInit {
-  note: Note = {} as Note;
+  note: Note = new Note();
 
   constructor(private noteService: NotesService) {}
 
