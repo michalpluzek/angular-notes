@@ -147,11 +147,9 @@ export class NotesListComponent implements OnInit {
   revelantNotes(query: string): Note[] {
     query = query.toLowerCase().trim();
     const relevantNotes = this.notes.filter((note) => {
-      if (
-        note.body.toLowerCase().includes(query) ||
-        note.title.toLowerCase().includes(query)
-      )
-        return true;
+      if (note.title && note.title.toLowerCase().includes(query)) return true;
+      if (note.body && note.body.toLowerCase().includes(query)) return true;
+
       return false;
     });
 
