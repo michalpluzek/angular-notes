@@ -1,8 +1,10 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   Renderer2,
   ViewChild,
 } from '@angular/core';
@@ -16,6 +18,8 @@ export class NoteCardComponent implements OnInit {
   @Input() title = '';
   @Input() body = '';
   @Input() link = '';
+
+  @Output('delete') deleteCard = new EventEmitter();
 
   @ViewChild('truncator', { static: true }) truncator: ElementRef<HTMLElement> =
     {} as ElementRef<HTMLElement>;
@@ -36,5 +40,9 @@ export class NoteCardComponent implements OnInit {
       // else (there is a text overflow), hide the fade out trancator
       this.renderer.setStyle(this.truncator.nativeElement, 'display', 'none');
     }
+  }
+
+  onXButtonClick() {
+    this.deleteCard.emit();
   }
 }

@@ -16,6 +16,7 @@
       [link]="'' + id"
       [title]="note.title"
       [body]="note.body"
+      (delete)="deleteNote(id)"
     ></app-note-card>
   </div>
 
