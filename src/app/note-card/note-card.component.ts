@@ -13,8 +13,9 @@ import {
   styleUrls: ['./note-card.component.scss'],
 })
 export class NoteCardComponent implements OnInit {
-  @Input() title: string = '';
-  @Input() body: string = '';
+  @Input() title = '';
+  @Input() body = '';
+  @Input() link = '';
 
   @ViewChild('truncator', { static: true }) truncator: ElementRef<HTMLElement> =
     {} as ElementRef<HTMLElement>;
