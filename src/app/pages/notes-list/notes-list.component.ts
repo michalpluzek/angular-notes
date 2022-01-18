@@ -134,6 +134,9 @@ export class NotesListComponent implements OnInit {
     // so they have to be removed
     const uniqueResults = this.removeDuplicates(allResults);
     this.filteredNotes = uniqueResults;
+
+    // sort
+    this.sortByRelevancy(allResults);
   }
 
   removeDuplicates(arr: any[]): any[] {
@@ -154,5 +157,29 @@ export class NotesListComponent implements OnInit {
     });
 
     return relevantNotes;
+  }
+
+  sortByRelevancy(searchResults: Note[]) {
+    let noteCountObj: any = {};
+
+    searchResults.forEach((note) => {
+      const noteId = this.noteService.getId(note);
+
+      if (noteCountObj[noteId]) {
+        noteCountObj[noteId] += 1;
+      } else {
+        noteCountObj[noteId] = 1;
+      }
+    });
+
+    this.filteredNotes = this.filteredNotes.sort((a: Note, b: Note) => {
+      const aId = this.noteService.getId(a);
+      const bId = this.noteService.getId(b);
+
+      const aCount = noteCountObj[aId];
+      const bCount = noteCountObj[bId];
+
+      return bCount - aCount;
+    });
   }
 }
