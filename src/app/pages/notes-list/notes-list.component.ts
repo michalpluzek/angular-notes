@@ -105,15 +105,24 @@ export class NotesListComponent implements OnInit {
   notes: Note[] = new Array<Note>();
   filteredNotes: Note[] = new Array<Note>();
 
+  filterInputValue: string = '';
+
   constructor(private noteService: NotesService) {}
 
   ngOnInit(): void {
     this.notes = this.noteService.getAll();
-    this.filteredNotes = this.notes;
+    this.filter('');
   }
 
-  deleteNote(id: number) {
-    this.noteService.delete(id);
+  deleteNote(note: Note) {
+    const noteId = this.noteService.getId(note);
+    this.noteService.delete(noteId);
+    console.log(this.filterInputValue);
+    this.filter(this.filterInputValue);
+  }
+
+  generateNoteUrl(note: Note) {
+    return '' + this.noteService.getId(note);
   }
 
   filter(query: string) {

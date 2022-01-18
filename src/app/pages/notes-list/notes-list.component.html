@@ -7,6 +7,7 @@
           class="input"
           type="text"
           placeholder="Filter"
+          [(ngModel)]="filterInputValue"
           (keyup)="filter(filterInput.value)"
         />
         <span class="icon is-small is-left">
@@ -18,12 +19,12 @@
 
   <div class="notes-list" [@listAnim]>
     <app-note-card
-      *ngFor="let note of filteredNotes; index as id"
-      [link]="'' + id"
+      *ngFor="let note of filteredNotes"
+      [link]="generateNoteUrl(note)"
       [@itemAnim]
       [title]="note.title"
       [body]="note.body"
-      (delete)="deleteNote(id)"
+      (delete)="deleteNote(note)"
     ></app-note-card>
   </div>
 
