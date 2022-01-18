@@ -18,6 +18,10 @@ export class NoteDetailsComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.noteService.add(form.value);
+    this.cancel();
+  }
+
+  cancel() {
     this.router.navigateByUrl('/');
   }
 }
