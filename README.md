@@ -1,6 +1,7 @@
 # AngularNotes
 
-Project from YT https://www.youtube.com/watch?v=akUcKvEsG8w&ab_channel=Devstackr
+Design taken from YT + my modifications
+https://www.youtube.com/watch?v=akUcKvEsG8w&ab_channel=Devstackr
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
 
